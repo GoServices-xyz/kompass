@@ -133,6 +133,7 @@
              */
             function handleMouseMove(event) {
                 const rose = compassrose.getBoundingClientRect();
+                oldOrientation = newOrientation;
                 newOrientation = Math.atan2((rose.y + (rose.height / 2)) - event.clientY, (rose.x + (rose.width / 2)) - event.clientX) * 180 / Math.PI;
                 compassrose.animate([
                     { transform: 'rotate(' + oldOrientation + 'deg)' },
@@ -141,7 +142,7 @@
                     duration: Math.abs(oldOrientation - newOrientation) * 10,
                     fill: 'forwards'
                 }).onfinish = function () {
-                    oldOrientation = newOrientation;
+                   
                 }
             };
         })();

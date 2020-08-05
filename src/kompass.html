@@ -106,15 +106,15 @@
 
         // javascript for the compass
         (function () {
-            var lineInc = 2,
-                majMarkDegree = 10,
-                degreeInc = 30,
-                compassrose = document.getElementById("compassrose"),
-                xmlns = "http://www.w3.org/2000/svg",
-                xlink = "http://www.w3.org/1999/xlink";
+            const lineInc = 2;
+            const majMarkDegree = 10;
+            const degreeInc = 30;
+            const compassrose = document.getElementById("compassrose");
+            const xmlns = "http://www.w3.org/2000/svg";
+            const xlink = "http://www.w3.org/1999/xlink";
             if (lineInc > 0) {
                 for (var i = 0; i < 360; i += lineInc) {
-                    var newline = document.createElementNS(xmlns, 'use');
+                    const newline = document.createElementNS(xmlns, 'use');
                     if (i % majMarkDegree == 0) {
                         newline.setAttributeNS(xlink, 'xlink:href', '#majline');
                     } else {
@@ -125,14 +125,16 @@
                 }
             }
 
-            var writeDegs = document.createElementNS(xmlns, 'text'),
-                currentDeg = 0,
-                writeOffset = 0;
+            const writeDegs = document.createElementNS(xmlns, 'text');
+            var currentDeg = 0;
+            var writeOffset = 0;
             for (var i = 0; i < 99; i += (degreeInc / 360) * 100) {
-                var degree = document.createElementNS(xmlns, 'textPath');
+                const degree = document.createElementNS(xmlns, 'textPath');
                 degree.setAttributeNS(xlink, 'xlink:href', '#rosecircle');
                 var length = Math.log(i) * Math.LOG10E + 1 | 0;
-                if (length > 1) { writeOffset = 1; }
+                if (length > 1) {
+                    writeOffset = 1;
+                }
                 degree.setAttributeNS(null, 'startOffset', (i - writeOffset) + "%");
                 degree.textContent = currentDeg;
                 writeDegs.appendChild(degree);
@@ -140,27 +142,20 @@
             }
             compassrose.appendChild(writeDegs);
 
-            oldOrientation = 0;
-            newOrientation = 0;
+            var oldOrientation = 0;
+            var newOrientation = 0;
 
             document.onmousemove = handleMouseMove;
 
-
-            function fmod(y, x) {
-                var quotient = Math.floor(y / x);
-                return y % x;
-            }
-            function constrainAngle(x) {
-                x = fmod(x, 360);
-                if (x < 0)
-                    x += 360;
-                return x;
-            }
-
+            /**
+             * @brief mouse move handler
+             * 
+             * Berechnet den Winkel zwischen Maus und Mitte des Kompasses. Dies muss bei jedem mouse move geschehen, da das Zentrum des Kompasses ein wenig offcenter ist.
+             * Winkel ist [-180,180];
+             */
             function handleMouseMove(event) {
                 const rose = compassrose.getBoundingClientRect();
-                newOrientation = constrainAngle(Math.atan2((rose.y + (rose.height / 2)) - event.clientY, (rose.x + (rose.width / 2)) - event.clientX) * 180 / Math.PI)
-
+                newOrientation = Math.atan2((rose.y + (rose.height / 2)) - event.clientY, (rose.x + (rose.width / 2)) - event.clientX) * 180 / Math.PI;
                 compassrose.animate([
                     { transform: 'rotate(' + oldOrientation + 'deg)' },
                     { transform: 'rotate(' + newOrientation + 'deg)' }

@@ -106,12 +106,14 @@
 
         // javascript for the compass
         (function () {
+
             const lineInc = 2;
             const majMarkDegree = 10;
             const degreeInc = 30;
             const compassrose = document.getElementById("compassrose");
             const xmlns = "http://www.w3.org/2000/svg";
             const xlink = "http://www.w3.org/1999/xlink";
+            // draw lines
             if (lineInc > 0) {
                 for (var i = 0; i < 360; i += lineInc) {
                     const newline = document.createElementNS(xmlns, 'use');
@@ -125,6 +127,7 @@
                 }
             }
 
+            // draw degree text
             const writeDegs = document.createElementNS(xmlns, 'text');
             var currentDeg = 0;
             var writeOffset = 0;
@@ -145,6 +148,8 @@
             var oldOrientation = 0;
             var newOrientation = 0;
 
+
+            // register mouse handler
             document.onmousemove = handleMouseMove;
 
             /**

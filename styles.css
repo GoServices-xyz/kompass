@@ -2,4 +2,24 @@
 
 @tailwind components;
 
+#compassrose {
+    width: 40%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-left: 30%;
+    border-radius: 50%;
+    color: black;
+}
+
+#roseline,
+#majline {
+    stroke: #eee;
+    stroke-width: .5;
+}
+
+text {
+    font-family: Montserrat, sans-serif;
+    font-size: 10;
+    fill: #eee;
+}
+
 @tailwind utilities;

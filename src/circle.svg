@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" id="compassrose">
+<defs>
+    <symbol>
+        <line x1="40" y1="250" x2="50" y2="250" id="roseline" />
+        <line x1="40" y1="250" x2="60" y2="250" id="majline" />
+        <path d="M10,250a240,240 0 1,0 480,0a240,240 0 1,0 -480,0" id="rosecircle" />
+    </symbol>
+    </defs>
+</svg>

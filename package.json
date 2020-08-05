@@ -1,0 +1,18 @@
+{
+  "name": "kompass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "dependencies": {
+    "@node-minify/clean-css": "^6.0.0",
+    "@node-minify/core": "^6.0.0",
+    "tailwindcss": "^1.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npx tailwindcss build styles.css -o src/style.css -c tailwind.config.js",
+    "build:prod": "set NODE_ENV=production&& npx tailwindcss build styles.css -o src/style.css -c tailwind.config.js && node minify.js"
+  },
+  "author": "WebTechnologies",
+  "license": "ISC"
+}
